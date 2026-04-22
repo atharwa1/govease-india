@@ -1,0 +1,91 @@
+.doc-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  transition: all 0.2s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.doc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
+}
+
+.doc-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.doc-icon-wrapper {
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-title-group {
+  flex: 1;
+}
+
+.doc-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.25rem;
+}
+
+.doc-title-hi {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.doc-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.doc-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.doc-btn {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.doc-btn-apply {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.doc-btn-apply:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.doc-btn-status {
+  background-color: var(--color-background);
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+}
+
+.doc-btn-status:hover {
+  background-color: var(--color-border);
+}
