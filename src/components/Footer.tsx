@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
           <div style={{ maxWidth: '320px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-primary)', marginBottom: '1rem' }}>
               <ShieldCheck size={24} />
-              <span>GovEase India</span>
+              <span>GoEase India</span>
             </div>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', lineHeight: 1.7 }}>
               Your one-stop portal for accessing, understanding, and managing essential Indian government documents without the confusion.
@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div style={{ textAlign: 'center', paddingTop: '1.5rem', borderTop: '1px solid var(--color-border)', color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>
-          <p>© {new Date().getFullYear()} GovEase India. For demonstration purposes only. Not an official government website.</p>
+          <p>© {new Date().getFullYear()} GoEase India. For demonstration purposes only. Not an official government website.</p>
         </div>
       </div>
     </footer>

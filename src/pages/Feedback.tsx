@@ -96,7 +96,7 @@ export const Feedback: React.FC = () => {
             <MessageSquareHeart size={28} />
           </div>
           <h1>Suggestions & Feedback</h1>
-          <p>Help us improve GovEase India. Your voice shapes the future of this platform.</p>
+          <p>Help us improve GoEase India. Your voice shapes the future of this platform.</p>
         </div>
 
         {/* Layout: Form + Sidebar */}
@@ -193,7 +193,7 @@ export const Feedback: React.FC = () => {
                 </div>
                 <h2>Thank you for your feedback!</h2>
                 <p>
-                  Your input helps us make GovEase India better for everyone.
+                  Your input helps us make GoEase India better for everyone.
                   {feedbackText.trim().length > 20 && ' Your suggestion has been added to the community board.'}
                 </p>
                 <button className="feedback-reset-btn" onClick={handleReset}>

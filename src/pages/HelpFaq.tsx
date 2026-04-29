@@ -8,20 +8,20 @@ interface FaqItem {
 
 const faqData: FaqItem[] = [
   {
-    question: 'What is GovEase India?',
-    answer: 'GovEase India is a unified portal that centralizes access to essential Indian government services and documentation. We provide clear step-by-step guides for applying, updating, or checking the status of documents like Aadhaar, PAN, Driving License, Passport, and more.'
+    question: 'What is GoEase India?',
+    answer: 'GoEase India is a unified portal that centralizes access to essential Indian government services and documentation. We provide clear step-by-step guides for applying, updating, or checking the status of documents like Aadhaar, PAN, Driving License, Passport, and more.'
   },
   {
     question: 'Is this an official government website?',
-    answer: 'No. GovEase India is a demonstration platform designed to simplify government service access. When you click "Proceed to Official Website" on any guide, you will be redirected to the actual government portal to complete your application.'
+    answer: 'No. GoEase India is a demonstration platform designed to simplify government service access. When you click "Proceed to Official Website" on any guide, you will be redirected to the actual government portal to complete your application.'
   },
   {
     question: 'Do I need to create an account?',
-    answer: 'No account is needed to browse guides, search for services, or use the status tracker. GovEase is designed to give you quick, hassle-free access to information.'
+    answer: 'No account is needed to browse guides, search for services, or use the status tracker. GoEase is designed to give you quick, hassle-free access to information.'
   },
   {
     question: 'Is my data safe?',
-    answer: 'GovEase does not collect or store any personal identification data. All sensitive transactions (applications, payments, document downloads) happen on the respective official government portals.'
+    answer: 'GoEase does not collect or store any personal identification data. All sensitive transactions (applications, payments, document downloads) happen on the respective official government portals.'
   },
   {
     question: 'How do I check the status of my application?',
@@ -33,11 +33,11 @@ const faqData: FaqItem[] = [
   },
   {
     question: 'Is this service free?',
-    answer: 'Yes! GovEase is completely free to use. There are no ads, no hidden charges, and no premium tiers. Government application fees still apply as per the respective government portal.'
+    answer: 'Yes! GoEase is completely free to use. There are no ads, no hidden charges, and no premium tiers. Government application fees still apply as per the respective government portal.'
   },
   {
     question: 'Can I use this on my mobile phone?',
-    answer: 'Absolutely. GovEase is built with a mobile-first design, so it works seamlessly on smartphones, tablets, and desktops.'
+    answer: 'Absolutely. GoEase is built with a mobile-first design, so it works seamlessly on smartphones, tablets, and desktops.'
   }
 ];
 
@@ -109,7 +109,7 @@ export const HelpFaq: React.FC = () => {
           </div>
           <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>Help & Frequently Asked Questions</h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: '1.0625rem' }}>
-            Find answers to common questions about using GovEase India.
+            Find answers to common questions about using GoEase India.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export const HelpFaq: React.FC = () => {
               <Mail size={20} color="var(--color-primary)" />
               <div>
                 <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>Email</p>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>support@govease.in</p>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>support@goease.in</p>
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-lg)' }}>

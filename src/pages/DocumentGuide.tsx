@@ -102,7 +102,7 @@ export const DocumentGuide: React.FC = () => {
               Proceed to Official Website
             </button>
             <p style={{ marginTop: '1rem', fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
-              You will be redirected to the official government portal. GovEase does not collect your sensitive data.
+              You will be redirected to the official government portal. GoEase does not collect your sensitive data.
             </p>
           </div>
 

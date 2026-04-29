@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
       <div className="container navbar-container">
         <Link to="/" className="navbar-brand" onClick={closeMenu}>
           <ShieldCheck size={28} />
-          <span>GovEase India</span>
+          <span>GoEase India</span>
         </Link>
         
         <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
