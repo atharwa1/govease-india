@@ -11,6 +11,7 @@ import { Feedback } from './pages/Feedback';
 import { NotFound } from './pages/NotFound';
 import { GliftyChatbot } from './components/GliftyChatbot';
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -24,6 +25,7 @@ const ScrollToTop = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
+    <LanguageProvider>
     <Router>
       <ScrollToTop />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -44,6 +46,7 @@ const App: React.FC = () => {
         <GliftyChatbot />
       </div>
     </Router>
+    </LanguageProvider>
     </ThemeProvider>
   );
 };

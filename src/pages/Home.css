@@ -214,6 +214,12 @@
    Responsive
    ================== */
 
+@media (max-width: 1024px) {
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2rem;
@@ -227,8 +233,20 @@
     grid-template-columns: 1fr;
   }
 
+  .action-card {
+    padding: 1.25rem;
+  }
+
   .stats-bar {
     gap: 2rem;
+  }
+
+  .quick-actions-section {
+    padding: 2.5rem 0;
+  }
+
+  .popular-docs-section {
+    padding: 2.5rem 0;
   }
 }
 
@@ -241,8 +259,47 @@
     font-size: 1.75rem;
   }
 
+  .hero-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+
   .search-input {
     font-size: 0.9375rem;
     padding: 0.875rem 1rem 0.875rem 3rem;
+  }
+
+  .action-icon-wrapper {
+    padding: 0.625rem;
+  }
+
+  .action-icon-wrapper svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .action-title {
+    font-size: 1rem;
+  }
+
+  .action-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .stats-bar {
+    gap: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .quick-actions-section,
+  .popular-docs-section {
+    padding: 2rem 0;
   }
 }

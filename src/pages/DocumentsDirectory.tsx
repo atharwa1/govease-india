@@ -3,12 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import { DocumentCard } from '../components/DocumentCard';
 import { documentsData, type DocumentCategory } from '../data/documents';
+import { useLanguage } from '../context/LanguageContext';
 import './DocumentsDirectory.css';
 
 export const DocumentsDirectory: React.FC = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const initialQuery = searchParams.get('q') || '';
+  const { t } = useLanguage();
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [activeCategory, setActiveCategory] = useState<DocumentCategory | 'All'>('All');
@@ -26,8 +28,8 @@ export const DocumentsDirectory: React.FC = () => {
   return (
     <div className="directory-page">
       <div className="container">
-        <h1 className="section-title" style={{ fontSize: '2rem', fontWeight: 800 }}>All Government Services</h1>
-        <p className="directory-subtitle">Browse and find the document service you need.</p>
+        <h1 className="section-title" style={{ fontSize: '2rem', fontWeight: 800 }}>{t('docs.title')}</h1>
+        <p className="directory-subtitle">{t('docs.subtitle')}</p>
         
         {/* Filters and Search */}
         <div className="directory-filters">
@@ -35,7 +37,7 @@ export const DocumentsDirectory: React.FC = () => {
             <Search className="directory-search-icon" size={20} />
             <input
               type="text"
-              placeholder="Search for documents..."
+              placeholder={t('docs.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="directory-search-input"
@@ -66,8 +68,8 @@ export const DocumentsDirectory: React.FC = () => {
           </div>
         ) : (
           <div className="directory-empty">
-            <p className="directory-empty-title">No documents found.</p>
-            <p>Try adjusting your search or category filter.</p>
+            <p className="directory-empty-title">{t('docs.noResults')}</p>
+            <p>{t('docs.noResultsHint')}</p>
           </div>
         )}
       </div>

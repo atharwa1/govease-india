@@ -93,6 +93,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .navbar-links {
@@ -128,4 +130,32 @@
   .navbar-links .nav-link:hover {
     background-color: var(--color-background);
   }
+
+  .lang-toggle {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.8125rem;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .navbar-right {
+    gap: 0.375rem;
+  }
 }
+
+@media (max-width: 480px) {
+  .navbar-brand span {
+    font-size: 1.0625rem;
+  }
+
+  .navbar-container {
+    padding: 0 0.75rem;
+  }
+}
+

@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 import { documentsData } from '../data/documents';
+import { useLanguage } from '../context/LanguageContext';
 import './ApplyPage.css';
 
 type TabKey = 'overview' | 'steps' | 'apply' | 'faqs';
@@ -15,7 +16,9 @@ type ApplyStep = 'form' | 'payment' | 'verification' | 'download';
 export const ApplyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const doc = documentsData.find(d => d.id === id);
+  const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabKey>('overview');
+  const [selectedService, setSelectedService] = useState<string>('');
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [appNumber, setAppNumber] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -52,7 +55,8 @@ export const ApplyPage: React.FC = () => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const num = 'GE-' + doc.id.toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+    const svcTag = selectedService ? selectedService.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6) : 'GEN';
+    const num = 'GE-' + doc.id.toUpperCase() + '-' + svcTag + '-' + Date.now().toString(36).toUpperCase();
     setAppNumber(num);
     setApplyStep('payment');
   };
@@ -77,6 +81,7 @@ export const ApplyPage: React.FC = () => {
   };
 
   const handleDownload = () => {
+    const selectedSvc = doc.services.find(s => s.id === selectedService);
     const content = `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        GoEase India — ${doc.title}
@@ -84,6 +89,7 @@ export const ApplyPage: React.FC = () => {
 
 Application Reference: ${appNumber}
 Document: ${doc.title} (${doc.titleHi})
+Service: ${selectedSvc ? selectedSvc.label : 'General'}
 Status: VERIFIED & APPROVED
 
 Applicant Details:
@@ -115,6 +121,8 @@ via GoEase India portal.
   const stepOrder: ApplyStep[] = ['form', 'payment', 'verification', 'download'];
   const currentStepIdx = stepOrder.indexOf(applyStep);
 
+  const selectedSvcInfo = doc.services.find(s => s.id === selectedService);
+
   return (
     <div className="apply-page">
       <div className="container" style={{ maxWidth: '860px' }}>
@@ -129,8 +137,8 @@ via GoEase India portal.
               <IconComponent size={24} />
             </div>
             <h1>
-              {doc.title}
-              <small>{doc.titleHi} — {doc.description}</small>
+              {language === 'HI' ? doc.titleHi : doc.title}
+              <small>{language === 'HI' ? doc.title : doc.titleHi} — {doc.description}</small>
             </h1>
           </div>
           <div className="apply-meta-grid">
@@ -155,6 +163,42 @@ via GoEase India portal.
                 <div className="meta-value">Physical + Digital</div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Service Selector */}
+        <div className="service-selector-card">
+          <h3 className="service-selector-title">
+            <Sparkles size={18} />
+            {language === 'HI' ? 'सेवा चुनें' : 'Select a Service'}
+          </h3>
+          <div className="service-selector-grid">
+            {doc.services.map(svc => {
+              const SvcIcon = (LucideIcons as any)[svc.iconName] || LucideIcons.FileText;
+              const isSelected = selectedService === svc.id;
+              return (
+                <button
+                  key={svc.id}
+                  className={`service-option ${isSelected ? 'selected' : ''}`}
+                  onClick={() => setSelectedService(svc.id)}
+                >
+                  <div className="service-option-icon">
+                    <SvcIcon size={20} />
+                  </div>
+                  <div className="service-option-text">
+                    <span className="service-option-label">
+                      {language === 'HI' ? svc.labelHi : svc.label}
+                    </span>
+                    <span className="service-option-desc">{svc.description}</span>
+                  </div>
+                  {isSelected && (
+                    <div className="service-option-check">
+                      <CheckCircle size={18} />
+                    </div>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -233,8 +277,14 @@ via GoEase India portal.
               {/* Step 1: Form */}
               {applyStep === 'form' && (
                 <form className="apply-form" onSubmit={handleFormSubmit}>
+                  {selectedSvcInfo && (
+                    <div className="selected-service-badge">
+                      <Sparkles size={16} />
+                      <span>Service: <strong>{language === 'HI' ? selectedSvcInfo.labelHi : selectedSvcInfo.label}</strong></span>
+                    </div>
+                  )}
                   <p style={{ color: 'var(--color-text-muted)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
-                    Fill in the details below to submit your application for <strong>{doc.title}</strong>.
+                    Fill in the details below to submit your application for <strong>{language === 'HI' ? doc.titleHi : doc.title}</strong>.
                   </p>
                   {doc.formFields.map(field => (
                     <div className="form-group" key={field.name}>
@@ -400,7 +450,7 @@ via GoEase India portal.
                     <div className="download-check-icon">
                       <CheckCircle size={40} />
                     </div>
-                    <h2>Your {doc.title} is Ready!</h2>
+                    <h2>Your {language === 'HI' ? doc.titleHi : doc.title} is Ready!</h2>
                     <p>Application <strong>{appNumber}</strong> has been processed, verified, and approved.</p>
                   </div>
 

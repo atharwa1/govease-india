@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle, MessageCircle, Mail, Phone } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FaqItem {
   question: string;
@@ -88,6 +89,7 @@ const FaqAccordion: React.FC<{ item: FaqItem; isOpen: boolean; onToggle: () => v
 
 export const HelpFaq: React.FC = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const { t } = useLanguage();
 
   return (
     <div style={{ padding: '3.5rem 0', backgroundColor: 'var(--color-background)', minHeight: 'calc(100vh - 4rem)' }}>
@@ -107,9 +109,9 @@ export const HelpFaq: React.FC = () => {
           }}>
             <HelpCircle size={28} />
           </div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>Help & Frequently Asked Questions</h1>
+          <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '0.5rem' }}>{t('help.title')}</h1>
           <p style={{ color: 'var(--color-text-muted)', fontSize: '1.0625rem' }}>
-            Find answers to common questions about using GoEase India.
+            {t('help.subtitle')}
           </p>
         </div>
 
@@ -132,29 +134,29 @@ export const HelpFaq: React.FC = () => {
           border: '1px solid var(--color-border)',
           boxShadow: 'var(--shadow-md)'
         }}>
-          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center' }}>Still need help?</h2>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.5rem', textAlign: 'center' }}>{t('help.stillNeedHelp')}</h2>
           <p style={{ color: 'var(--color-text-muted)', textAlign: 'center', marginBottom: '2rem', fontSize: '0.9375rem' }}>
-            Reach out to us through any of these channels.
+            {t('help.reachOut')}
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-lg)' }}>
               <MessageCircle size={20} color="var(--color-primary)" />
               <div>
-                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>Live Chat</p>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>Available 9 AM – 6 PM</p>
+                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>{t('help.liveChat')}</p>
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>{t('help.available')}</p>
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-lg)' }}>
               <Mail size={20} color="var(--color-primary)" />
               <div>
-                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>Email</p>
+                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>{t('help.email')}</p>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>support@goease.in</p>
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem', backgroundColor: 'var(--color-background)', borderRadius: 'var(--radius-lg)' }}>
               <Phone size={20} color="var(--color-primary)" />
               <div>
-                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>Helpline</p>
+                <p style={{ fontWeight: 600, fontSize: '0.875rem' }}>{t('help.helpline')}</p>
                 <p style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>1800-XXX-XXXX</p>
               </div>
             </div>

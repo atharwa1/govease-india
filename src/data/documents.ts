@@ -9,6 +9,14 @@ export interface FormField {
   options?: string[];
 }
 
+export interface ServiceOption {
+  id: string;
+  label: string;
+  labelHi: string;
+  iconName: string;
+  description: string;
+}
+
 export interface DocumentInfo {
   id: string;
   title: string;
@@ -16,6 +24,7 @@ export interface DocumentInfo {
   description: string;
   category: DocumentCategory;
   iconName: string;
+  services: ServiceOption[];
   eligibility: string[];
   requiredDocs: string[];
   fees: string;
@@ -42,6 +51,18 @@ export const documentsData: DocumentInfo[] = [
     description: 'Unique 12-digit identity number issued to Indian residents by UIDAI.',
     category: 'Identity',
     iconName: 'Fingerprint',
+    services: [
+      { id: 'new-enrolment', label: 'New Enrolment', labelHi: 'नया नामांकन', iconName: 'UserPlus', description: 'Apply for a fresh Aadhaar card at an enrolment centre' },
+      { id: 'update-correction', label: 'Update / Correction', labelHi: 'अपडेट / सुधार', iconName: 'Edit', description: 'Update name, address, DOB, mobile, or email in Aadhaar' },
+      { id: 'reprint', label: 'Order Reprint', labelHi: 'पुनर्मुद्रण', iconName: 'Printer', description: 'Order a PVC Aadhaar card reprint via UIDAI' },
+      { id: 'download', label: 'Download e-Aadhaar', labelHi: 'ई-आधार डाउनलोड', iconName: 'Download', description: 'Download a digital copy of your Aadhaar (e-Aadhaar PDF)' },
+      { id: 'check-status', label: 'Check Enrolment Status', labelHi: 'स्थिति जाँचें', iconName: 'Search', description: 'Track the status of your Aadhaar enrolment or update' },
+      { id: 'lock-biometrics', label: 'Lock / Unlock Biometrics', labelHi: 'बायोमेट्रिक लॉक', iconName: 'Lock', description: 'Lock or unlock your biometric authentication for security' },
+      { id: 'generate-vid', label: 'Generate / Retrieve VID', labelHi: 'VID जनरेट करें', iconName: 'KeyRound', description: 'Generate a 16-digit Virtual ID for privacy-safe authentication' },
+      { id: 'verify-aadhaar', label: 'Verify Aadhaar', labelHi: 'आधार सत्यापन', iconName: 'ShieldCheck', description: 'Verify your Aadhaar number validity online via UIDAI' },
+      { id: 'bank-linking', label: 'Aadhaar-Bank Linking', labelHi: 'बैंक लिंकिंग स्थिति', iconName: 'Landmark', description: 'Check if your Aadhaar is linked with your bank account' },
+      { id: 'maadhaar', label: 'mAadhaar Profile', labelHi: 'mAadhaar प्रोफ़ाइल', iconName: 'Smartphone', description: 'Access your Aadhaar profile via the official mAadhaar app' }
+    ],
     eligibility: ['Any resident of India', 'No age restriction', 'No citizenship requirement — residency is sufficient'],
     requiredDocs: ['Proof of Identity (Passport, PAN, Voter ID)', 'Proof of Address (Utility bill, Bank statement)', 'Proof of Date of Birth (Birth certificate, Marksheet)'],
     fees: '₹0 (Free for new enrolment); ₹50 for updates',
@@ -72,6 +93,16 @@ export const documentsData: DocumentInfo[] = [
     description: 'Permanent Account Number for tax identification and financial transactions.',
     category: 'Finance',
     iconName: 'CreditCard',
+    services: [
+      { id: 'new-pan', label: 'Apply for New PAN', labelHi: 'नया पैन आवेदन', iconName: 'FilePlus', description: 'Apply for a new PAN card using Form 49A (Indian) or 49AA (Foreign)' },
+      { id: 'correction-reprint', label: 'Correction / Reprint', labelHi: 'सुधार / पुनर्मुद्रण', iconName: 'Edit', description: 'Correct details or request a reprint of your existing PAN card' },
+      { id: 'link-aadhaar', label: 'Link PAN with Aadhaar', labelHi: 'आधार से लिंक', iconName: 'Link', description: 'Link your PAN with Aadhaar as mandated by the Income Tax Department' },
+      { id: 'instant-epan', label: 'Instant e-PAN', labelHi: 'तत्काल ई-पैन', iconName: 'Zap', description: 'Get an instant e-PAN using your Aadhaar number and OTP' },
+      { id: 'check-status', label: 'Check Application Status', labelHi: 'आवेदन स्थिति', iconName: 'Search', description: 'Track the status of your PAN application using acknowledgment number' },
+      { id: 'verify-pan', label: 'Verify PAN Details', labelHi: 'पैन सत्यापन', iconName: 'ShieldCheck', description: 'Verify PAN details and active status on Income Tax portal' },
+      { id: 'know-pan', label: 'Know Your PAN', labelHi: 'अपना पैन जानें', iconName: 'Eye', description: 'Retrieve your PAN number using name, DOB, and mobile OTP' },
+      { id: 'surrender-pan', label: 'Surrender Duplicate PAN', labelHi: 'डुप्लीकेट पैन सरेंडर', iconName: 'FileX', description: 'Surrender extra PAN cards — holding more than one PAN is illegal' }
+    ],
     eligibility: ['Any Indian citizen', 'Individuals, companies, firms, and trusts', 'Foreign nationals with taxable income in India'],
     requiredDocs: ['Proof of Identity (Aadhaar, Passport, Voter ID)', 'Proof of Address (Utility bill, Bank statement)', 'Proof of Date of Birth (Birth certificate)', '2 recent passport-size photographs'],
     fees: '₹107 (Indian address); ₹1,017 (foreign address)',
@@ -103,6 +134,17 @@ export const documentsData: DocumentInfo[] = [
     description: 'Official document permitting individuals to operate motorized vehicles on public roads.',
     category: 'Transport',
     iconName: 'Car',
+    services: [
+      { id: 'learner-license', label: 'Apply Learner License', labelHi: 'लर्नर लाइसेंस', iconName: 'GraduationCap', description: 'Apply for a new Learner License (LL) at your RTO' },
+      { id: 'new-dl', label: 'New Driving License', labelHi: 'नया DL', iconName: 'FilePlus', description: 'Apply for a permanent Driving License after passing the test' },
+      { id: 'renewal', label: 'Renewal', labelHi: 'नवीनीकरण', iconName: 'RefreshCw', description: 'Renew your expired or expiring Driving License' },
+      { id: 'duplicate', label: 'Duplicate License', labelHi: 'डुप्लीकेट DL', iconName: 'Copy', description: 'Apply for a duplicate DL if original is lost or damaged' },
+      { id: 'international', label: 'International Driving Permit', labelHi: 'अंतरराष्ट्रीय परमिट', iconName: 'Globe', description: 'Apply for an IDP for driving abroad' },
+      { id: 'address-change', label: 'Change of Address', labelHi: 'पता परिवर्तन', iconName: 'MapPin', description: 'Update your address on the Driving License' },
+      { id: 'add-endorsement', label: 'Add Vehicle Class (AEDL)', labelHi: 'वाहन श्रेणी जोड़ें', iconName: 'ListPlus', description: 'Add a new vehicle class endorsement to your existing DL' },
+      { id: 'dl-extract', label: 'Extract of DL', labelHi: 'DL उद्धरण', iconName: 'FileOutput', description: 'Obtain a certified extract/printout of your Driving License' },
+      { id: 'surrender-dl', label: 'Surrender DL', labelHi: 'DL सरेंडर', iconName: 'FileX', description: 'Surrender your Driving License upon cancellation or disqualification' }
+    ],
     eligibility: ['Minimum age: 16 (geared motorcycle), 18 (car/commercial)', 'Must hold a valid Learner License', 'Must pass the driving test at RTO'],
     requiredDocs: ['Learner License', 'Proof of Age (Birth certificate, SSC marksheet)', 'Proof of Address (Aadhaar, Passport)', '6 passport-size photographs', 'Medical certificate (Form 1A)'],
     fees: '₹200 – ₹1,000 (varies by state and vehicle class)',
@@ -134,6 +176,16 @@ export const documentsData: DocumentInfo[] = [
     description: 'Identity document (EPIC) issued by the Election Commission of India for voting.',
     category: 'Identity',
     iconName: 'BadgeCheck',
+    services: [
+      { id: 'new-registration', label: 'New Registration (Form 6)', labelHi: 'नया पंजीकरण', iconName: 'UserPlus', description: 'Register as a new voter in the electoral roll' },
+      { id: 'correction', label: 'Correction (Form 8)', labelHi: 'सुधार', iconName: 'Edit', description: 'Correct your name, DOB, photo, or address on Voter ID' },
+      { id: 'transfer', label: 'Transfer / Shift (Form 8)', labelHi: 'स्थानांतरण', iconName: 'ArrowRightLeft', description: 'Transfer your voter registration when moving address' },
+      { id: 'download-epic', label: 'Download e-EPIC', labelHi: 'ई-EPIC डाउनलोड', iconName: 'Download', description: 'Download a digital copy of your Voter ID card' },
+      { id: 'deletion', label: 'Deletion (Form 7)', labelHi: 'विलोपन', iconName: 'Trash2', description: 'Request deletion of a name from the electoral roll' },
+      { id: 'electoral-search', label: 'Electoral Roll Search', labelHi: 'मतदाता सूची खोजें', iconName: 'Search', description: 'Search your name in the electoral roll online via voters.eci.gov.in' },
+      { id: 'blo-details', label: 'BLO / ERO Details', labelHi: 'BLO / ERO विवरण', iconName: 'MapPin', description: 'Find your Booth Level Officer and Electoral Registration Officer' },
+      { id: 'overseas-voter', label: 'Overseas Registration (6A)', labelHi: 'विदेशी मतदाता पंजीकरण', iconName: 'Globe', description: 'Register as an overseas Indian voter using Form 6A' }
+    ],
     eligibility: ['Indian citizen', 'Minimum age: 18 years on qualifying date (Jan 1)', 'Resident of the constituency'],
     requiredDocs: ['Proof of Age (Birth certificate, Marksheet)', 'Proof of Address (Aadhaar, Utility bill)', 'Recent passport-size photograph'],
     fees: 'Free',
@@ -163,6 +215,16 @@ export const documentsData: DocumentInfo[] = [
     description: 'Travel document for international travel issued by the Government of India.',
     category: 'Identity',
     iconName: 'Plane',
+    services: [
+      { id: 'fresh-passport', label: 'Fresh Passport', labelHi: 'नया पासपोर्ट', iconName: 'FilePlus', description: 'Apply for a brand new Indian passport' },
+      { id: 'renewal', label: 'Passport Renewal', labelHi: 'पासपोर्ट नवीनीकरण', iconName: 'RefreshCw', description: 'Renew your expired or expiring passport' },
+      { id: 'reissue', label: 'Re-issue Passport', labelHi: 'पासपोर्ट पुनः जारी', iconName: 'RotateCw', description: 'Re-issue for exhausted pages, lost/damaged, or name/address change' },
+      { id: 'tatkal', label: 'Tatkal Passport', labelHi: 'तत्काल पासपोर्ट', iconName: 'Zap', description: 'Expedited passport processing (1-3 working days)' },
+      { id: 'pcc', label: 'Police Clearance (PCC)', labelHi: 'पुलिस क्लियरेंस', iconName: 'ShieldCheck', description: 'Obtain a Police Clearance Certificate for emigration' },
+      { id: 'surrender', label: 'Surrender Certificate', labelHi: 'समर्पण प्रमाणपत्र', iconName: 'FileX', description: 'Surrender your Indian passport upon acquiring foreign citizenship' },
+      { id: 'track-status', label: 'Track Application', labelHi: 'आवेदन ट्रैक', iconName: 'Search', description: 'Track passport application status using ARN' },
+      { id: 'slot-availability', label: 'Check Slot Availability', labelHi: 'स्लॉट उपलब्धता', iconName: 'CalendarDays', description: 'Check PSK/POPSK appointment slot availability online' }
+    ],
     eligibility: ['Indian citizen by birth / descent / registration / naturalization', 'No pending criminal proceedings (for normal passport)', 'Minors need parental consent'],
     requiredDocs: ['Proof of Address (Aadhaar, Utility bill)', 'Proof of Date of Birth (Birth certificate, Marksheet)', 'Aadhaar Card (mandatory)', 'Old Passport (for renewal)'],
     fees: '₹1,500 (36 pages); ₹2,000 (60 pages); Tatkal: +₹2,000 extra',
@@ -195,6 +257,16 @@ export const documentsData: DocumentInfo[] = [
     description: 'Document for subsidized food grains and fuel under PDS.',
     category: 'Welfare',
     iconName: 'ShoppingCart',
+    services: [
+      { id: 'new-card', label: 'New Ration Card', labelHi: 'नया राशन कार्ड', iconName: 'FilePlus', description: 'Apply for a new ration card for your household' },
+      { id: 'add-remove-member', label: 'Add / Remove Member', labelHi: 'सदस्य जोड़ें/हटाएँ', iconName: 'Users', description: 'Add or remove family members from existing ration card' },
+      { id: 'correction', label: 'Correction / Update', labelHi: 'सुधार / अपडेट', iconName: 'Edit', description: 'Correct name, address, or other details on ration card' },
+      { id: 'duplicate', label: 'Duplicate Card', labelHi: 'डुप्लीकेट कार्ड', iconName: 'Copy', description: 'Apply for a duplicate if your card is lost or damaged' },
+      { id: 'surrender', label: 'Surrender Card', labelHi: 'कार्ड सरेंडर', iconName: 'FileX', description: 'Surrender your ration card if no longer eligible' },
+      { id: 'onorc', label: 'ONORC Portability', labelHi: 'ONORC पोर्टेबिलिटी', iconName: 'Globe', description: 'Use One Nation One Ration Card for inter-state portability' },
+      { id: 'category-change', label: 'Category Change', labelHi: 'श्रेणी परिवर्तन', iconName: 'ArrowUpDown', description: 'Apply to change ration card category (APL/BPL/AAY)' },
+      { id: 'download-ecard', label: 'Download e-Ration Card', labelHi: 'ई-राशन कार्ड डाउनलोड', iconName: 'Download', description: 'Download the digital copy of your ration card online' }
+    ],
     eligibility: ['Any Indian household', 'Family must not already hold a ration card', 'Applicable for APL, BPL, and AAY categories'],
     requiredDocs: ['Proof of Identity of head of family (Aadhaar, Voter ID)', 'Proof of Address (Utility bill)', 'Income Certificate', 'Family member Aadhaar cards', 'Passport-size photos of all members'],
     fees: '₹5 – ₹45 (varies by state)',
@@ -224,6 +296,15 @@ export const documentsData: DocumentInfo[] = [
     description: 'Official record of birth issued by local municipal authorities.',
     category: 'Identity',
     iconName: 'Baby',
+    services: [
+      { id: 'new-registration', label: 'New Registration', labelHi: 'नया पंजीकरण', iconName: 'FilePlus', description: 'Register a birth within 21 days (free of charge)' },
+      { id: 'delayed-registration', label: 'Delayed Registration', labelHi: 'विलंबित पंजीकरण', iconName: 'Clock', description: 'Register a birth after 21 days with affidavit and magistrate order' },
+      { id: 'correction', label: 'Correction', labelHi: 'सुधार', iconName: 'Edit', description: 'Correct errors in name, DOB, or parent details' },
+      { id: 'duplicate', label: 'Duplicate Certificate', labelHi: 'डुप्लीकेट प्रमाणपत्र', iconName: 'Copy', description: 'Obtain a duplicate if the original is lost or damaged' },
+      { id: 'name-inclusion', label: 'Name Inclusion', labelHi: 'नाम शामिल करें', iconName: 'UserPlus', description: "Add the child's name if it was not included at the time of registration" },
+      { id: 'non-availability', label: 'Non-Availability Certificate', labelHi: 'अनुपलब्धता प्रमाणपत्र', iconName: 'FileQuestion', description: 'Get a certificate stating birth was not registered in records' },
+      { id: 'search-record', label: 'Search Birth Record', labelHi: 'जन्म रिकॉर्ड खोजें', iconName: 'Search', description: 'Search for a birth record in the CRS database online' }
+    ],
     eligibility: ['Any child born in India', 'Registration within 21 days is free', 'Late registration requires additional affidavit'],
     requiredDocs: ['Hospital discharge slip / Birth report', 'Parents Aadhaar cards', 'Marriage certificate of parents', 'Proof of Address'],
     fees: '₹0 (within 21 days); ₹10 – ₹100 (late registration, varies by state)',
@@ -256,6 +337,13 @@ export const documentsData: DocumentInfo[] = [
     description: 'Certificate of annual income issued by the revenue department.',
     category: 'Finance',
     iconName: 'IndianRupee',
+    services: [
+      { id: 'new-application', label: 'New Application', labelHi: 'नया आवेदन', iconName: 'FilePlus', description: 'Apply for a new income certificate from the revenue department' },
+      { id: 'renewal', label: 'Renewal', labelHi: 'नवीनीकरण', iconName: 'RefreshCw', description: 'Renew your expired income certificate (typically valid for 1 year)' },
+      { id: 'correction', label: 'Correction', labelHi: 'सुधार', iconName: 'Edit', description: 'Correct errors in your existing income certificate' },
+      { id: 'verify', label: 'Verify Certificate', labelHi: 'प्रमाणपत्र सत्यापन', iconName: 'ShieldCheck', description: 'Verify the authenticity of an income certificate online' },
+      { id: 'download-cert', label: 'Download Certificate', labelHi: 'प्रमाणपत्र डाउनलोड', iconName: 'Download', description: 'Download digitally signed income certificate from e-district portal' }
+    ],
     eligibility: ['Any Indian resident', 'Required for scholarships, fee waivers, subsidies', 'Issued by Tehsildar / SDM office'],
     requiredDocs: ['Proof of Identity (Aadhaar)', 'Salary slip or employer certificate', 'Self-declaration of income', 'Ration Card (if available)', 'Proof of Address'],
     fees: '₹10 – ₹50 (varies by state)',
@@ -285,6 +373,13 @@ export const documentsData: DocumentInfo[] = [
     description: 'Certificate verifying caste for reservation and welfare benefits.',
     category: 'Welfare',
     iconName: 'ScrollText',
+    services: [
+      { id: 'new-application', label: 'New Application', labelHi: 'नया आवेदन', iconName: 'FilePlus', description: 'Apply for a new caste certificate from SDM/Tehsildar office' },
+      { id: 'renewal', label: 'Renewal', labelHi: 'नवीनीकरण', iconName: 'RefreshCw', description: 'Renew or reissue your caste certificate if required' },
+      { id: 'correction', label: 'Correction', labelHi: 'सुधार', iconName: 'Edit', description: 'Correct errors in your existing caste certificate' },
+      { id: 'verify', label: 'Verify Certificate', labelHi: 'प्रमाणपत्र सत्यापन', iconName: 'ShieldCheck', description: 'Verify the authenticity of a caste certificate online' },
+      { id: 'validity-extension', label: 'Validity Extension', labelHi: 'वैधता विस्तार', iconName: 'CalendarClock', description: 'Extend validity of an expired caste certificate via e-district' }
+    ],
     eligibility: ['Members of SC, ST, or OBC communities', 'Required for educational and employment reservations', 'Issued by SDM / Tehsildar office'],
     requiredDocs: ['Proof of Identity (Aadhaar, Voter ID)', 'Proof of Address', "Father's / Family member's caste certificate", 'School leaving certificate', 'Self-declaration affidavit'],
     fees: '₹10 – ₹50 (varies by state)',
@@ -315,6 +410,18 @@ export const documentsData: DocumentInfo[] = [
     description: 'Official document proving vehicle registration with the RTO.',
     category: 'Transport',
     iconName: 'FileText',
+    services: [
+      { id: 'new-registration', label: 'New Registration', labelHi: 'नया पंजीकरण', iconName: 'FilePlus', description: 'Register a newly purchased vehicle at the RTO' },
+      { id: 'transfer-ownership', label: 'Transfer Ownership', labelHi: 'स्वामित्व हस्तांतरण', iconName: 'ArrowRightLeft', description: 'Transfer vehicle ownership to a new buyer (Form 29/30)' },
+      { id: 'address-change', label: 'Change of Address', labelHi: 'पता परिवर्तन', iconName: 'MapPin', description: 'Update your address on the RC book' },
+      { id: 'hypothecation', label: 'Hypothecation', labelHi: 'हाइपोथिकेशन', iconName: 'Building', description: 'Add, continue, or terminate hypothecation (loan) on RC' },
+      { id: 'duplicate-rc', label: 'Duplicate RC', labelHi: 'डुप्लीकेट RC', iconName: 'Copy', description: 'Apply for a duplicate RC if lost or damaged' },
+      { id: 'noc', label: 'Issue NOC', labelHi: 'NOC जारी', iconName: 'FileCheck', description: 'Get a No Objection Certificate for inter-state transfer' },
+      { id: 'renewal', label: 'RC Renewal', labelHi: 'RC नवीनीकरण', iconName: 'RefreshCw', description: 'Renew vehicle registration after 15-year validity' },
+      { id: 'fitness-cert', label: 'Fitness Certificate', labelHi: 'फिटनेस प्रमाणपत्र', iconName: 'HeartPulse', description: 'Apply for fitness certificate for commercial or 15yr+ vehicles' },
+      { id: 'rc-extract', label: 'RC Extract', labelHi: 'RC उद्धरण', iconName: 'FileOutput', description: 'Get a certified extract of your RC details from Vahan portal' },
+      { id: 'fancy-number', label: 'Fancy Number Booking', labelHi: 'फैंसी नंबर बुकिंग', iconName: 'Hash', description: 'Book a choice/fancy registration number for your vehicle' }
+    ],
     eligibility: ['Owner of a motor vehicle', 'Vehicle must be registered within 7 days of purchase', 'Valid for 15 years (can be renewed)'],
     requiredDocs: ['Sale invoice of the vehicle', 'Insurance certificate', 'PUC certificate', 'Proof of Address', 'ID Proof (Aadhaar, PAN)', 'Form 20 (signed by dealer)'],
     fees: '₹200 – ₹5,000+ (varies by vehicle type and state)',
@@ -346,6 +453,16 @@ export const documentsData: DocumentInfo[] = [
     description: 'Unified Payments Interface for instant, government-linked digital transactions.',
     category: 'Finance',
     iconName: 'Smartphone',
+    services: [
+      { id: 'register-link', label: 'Register & Link Bank', labelHi: 'पंजीकरण और बैंक लिंक', iconName: 'Link', description: 'Register on a UPI app and link your bank account' },
+      { id: 'create-vpa', label: 'Create / Change VPA', labelHi: 'VPA बनाएँ / बदलें', iconName: 'AtSign', description: 'Create or customize your UPI ID (Virtual Payment Address)' },
+      { id: 'check-limit', label: 'Check Transaction Limit', labelHi: 'लेन-देन सीमा', iconName: 'BarChart3', description: 'Check your per-transaction and daily UPI limits' },
+      { id: 'raise-complaint', label: 'Raise Complaint', labelHi: 'शिकायत दर्ज', iconName: 'AlertCircle', description: 'Raise a dispute for failed or incorrect UPI transactions' },
+      { id: 'autopay', label: 'Auto-Pay / Mandate Setup', labelHi: 'ऑटो-पे सेटअप', iconName: 'CalendarClock', description: 'Set up recurring UPI payments for bills and subscriptions' },
+      { id: 'upi-lite', label: 'Enable UPI Lite', labelHi: 'UPI Lite सक्रिय करें', iconName: 'Wallet', description: 'Enable PIN-less small payments up to ₹1,000 via UPI Lite' },
+      { id: 'check-balance', label: 'Check Balance', labelHi: 'बैलेंस जाँचें', iconName: 'Eye', description: 'Check your bank account balance via UPI without visiting bank' },
+      { id: 'deregister', label: 'Deregister UPI', labelHi: 'UPI डीरजिस्टर', iconName: 'UserX', description: 'Deregister your UPI ID from a specific app or device' }
+    ],
     eligibility: ['Any Indian bank account holder', 'Must have a mobile number linked to bank', 'Supported on Android and iOS devices'],
     requiredDocs: ['Bank account linked to mobile number', 'Debit card (for initial setup)', 'Aadhaar (for Aadhaar-based authentication)'],
     fees: 'Free (no transaction charges for users)',

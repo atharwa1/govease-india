@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { Search, FileEdit, CheckCircle, Download, Zap } from 'lucide-react';
 import { DocumentCard } from '../components/DocumentCard';
 import { documentsData } from '../data/documents';
+import { useLanguage } from '../context/LanguageContext';
 import './Home.css';
 
 export const Home: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,13 +27,13 @@ export const Home: React.FC = () => {
         <div className="container">
           <div className="hero-badge">
             <Zap size={14} />
-            One Portal, All Services
+            {t('home.badge')}
           </div>
           <h1 className="hero-title">
-            Government Services, <span>Simplified</span>.
+            {t('home.title')} <span>{t('home.titleHighlight')}</span>.
           </h1>
           <p className="hero-subtitle">
-            Apply, track, and download essential Indian government documents in one unified portal. No jargon, no unnecessary redirects.
+            {t('home.subtitle')}
           </p>
           
           <form className="search-container" onSubmit={handleSearch} id="hero-search-form">
@@ -39,7 +41,7 @@ export const Home: React.FC = () => {
             <input
               type="text"
               className="search-input"
-              placeholder="E.g., Apply for PAN Card, Check DL Status..."
+              placeholder={t('home.searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               id="hero-search-input"
@@ -49,15 +51,15 @@ export const Home: React.FC = () => {
           <div className="stats-bar">
             <div className="stat-item">
               <div className="stat-number">11+</div>
-              <div className="stat-label">Services</div>
+              <div className="stat-label">{t('home.services')}</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">100%</div>
-              <div className="stat-label">Free to Use</div>
+              <div className="stat-label">{t('home.freeToUse')}</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">0</div>
-              <div className="stat-label">Ads</div>
+              <div className="stat-label">{t('home.ads')}</div>
             </div>
           </div>
         </div>
@@ -66,15 +68,15 @@ export const Home: React.FC = () => {
       {/* Quick Actions */}
       <section className="quick-actions-section" id="quick-actions">
         <div className="container">
-          <h2 className="section-title">What do you want to do?</h2>
+          <h2 className="section-title">{t('home.whatToDo')}</h2>
           <div className="quick-actions-grid">
             <div className="action-card" onClick={() => navigate('/documents')} id="action-apply">
               <div className="action-icon-wrapper">
                 <FileEdit size={28} />
               </div>
               <div>
-                <h3 className="action-title">Apply for New</h3>
-                <p className="action-subtitle">Get a new document issued</p>
+                <h3 className="action-title">{t('home.applyNew')}</h3>
+                <p className="action-subtitle">{t('home.applyNewDesc')}</p>
               </div>
             </div>
             
@@ -83,8 +85,8 @@ export const Home: React.FC = () => {
                 <CheckCircle size={28} />
               </div>
               <div>
-                <h3 className="action-title">Check Status</h3>
-                <p className="action-subtitle">Track your application</p>
+                <h3 className="action-title">{t('home.checkStatus')}</h3>
+                <p className="action-subtitle">{t('home.checkStatusDesc')}</p>
               </div>
             </div>
             
@@ -93,8 +95,8 @@ export const Home: React.FC = () => {
                 <Download size={28} />
               </div>
               <div>
-                <h3 className="action-title">Download</h3>
-                <p className="action-subtitle">Get digital copy</p>
+                <h3 className="action-title">{t('home.download')}</h3>
+                <p className="action-subtitle">{t('home.downloadDesc')}</p>
               </div>
             </div>
           </div>
@@ -104,7 +106,7 @@ export const Home: React.FC = () => {
       {/* Popular Documents */}
       <section className="popular-docs-section" id="popular-services">
         <div className="container">
-          <h2 className="section-title">Most Requested Services</h2>
+          <h2 className="section-title">{t('home.mostRequested')}</h2>
           <div className="docs-grid">
             {popularDocs.map(doc => (
               <DocumentCard key={doc.id} document={doc} />
@@ -112,7 +114,7 @@ export const Home: React.FC = () => {
           </div>
           <div className="text-center" style={{ marginTop: '2rem' }}>
             <button className="btn btn-outline" onClick={() => navigate('/documents')} id="view-all-btn">
-              View All Services →
+              {t('home.viewAll')}
             </button>
           </div>
         </div>
