@@ -286,7 +286,12 @@ via GoEase India portal.
                   <p style={{ color: 'var(--color-text-muted)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
                     Fill in the details below to submit your application for <strong>{language === 'HI' ? doc.titleHi : doc.title}</strong>.
                   </p>
-                  {doc.formFields.map(field => (
+                  {!selectedService && (
+                    <div style={{ padding: '1rem', backgroundColor: '#fff3cd', borderRadius: '0.5rem', color: '#856404', marginBottom: '1rem' }}>
+                      <strong>⚠️ Please select a service above to continue</strong>
+                    </div>
+                  )}
+                  {(selectedSvcInfo?.formFields || doc.formFields).map(field => (
                     <div className="form-group" key={field.name}>
                       <label>
                         {field.label}
@@ -321,7 +326,7 @@ via GoEase India portal.
                       )}
                     </div>
                   ))}
-                  <button type="submit" className="form-submit-btn">
+                  <button type="submit" className="form-submit-btn" disabled={!selectedService}>
                     Submit & Proceed to Payment <ArrowRight size={18} />
                   </button>
                 </form>
