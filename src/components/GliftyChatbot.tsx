@@ -349,6 +349,35 @@ export const GliftyChatbot: React.FC = () => {
     }
   };
 
+  // Hint tooltip for first-time users
+  const [showHint, setShowHint] = useState(() => {
+    try {
+      return !localStorage.getItem('glifty-hint-seen');
+    } catch {
+      return true;
+    }
+  });
+
+  const dismissHint = useCallback(() => {
+    setShowHint(false);
+    try {
+      localStorage.setItem('glifty-hint-seen', '1');
+    } catch { /* ignore */ }
+  }, []);
+
+  // Auto-dismiss hint after 8 seconds
+  useEffect(() => {
+    if (!showHint) return;
+    const timer = setTimeout(dismissHint, 8000);
+    return () => clearTimeout(timer);
+  }, [showHint, dismissHint]);
+
+  // Dismiss hint when user opens Glifty
+  const handleFabClick = () => {
+    setIsOpen(prev => !prev);
+    if (showHint) dismissHint();
+  };
+
   const suggestions = chatLang === 'HI' ? SUGGESTIONS_HI : SUGGESTIONS_EN;
 
   /* ── Render ── */
@@ -556,9 +585,28 @@ export const GliftyChatbot: React.FC = () => {
         </div>
       )}
 
+      {/* ── Hint tooltip for new users ── */}
+      {showHint && !isOpen && (
+        <div className="glifty-hint" id="glifty-hint">
+          <span className="glifty-hint-emoji">✨</span>
+          <span className="glifty-hint-text">
+            {chatLang === 'HI'
+              ? 'नमस्ते! मुझ पर क्लिक करो और कुछ भी पूछो!'
+              : 'Hi! Click me & type anything to chat!'}
+          </span>
+          <button
+            className="glifty-hint-close"
+            onClick={(e) => { e.stopPropagation(); dismissHint(); }}
+            aria-label="Dismiss hint"
+          >
+            <X size={12} />
+          </button>
+        </div>
+      )}
+
       <button
         className={`glifty-fab ${isOpen ? 'open' : ''}`}
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={handleFabClick}
         aria-label={isOpen ? 'Close Glifty' : 'Ask Glifty AI'}
         id="glifty-fab"
       >
@@ -567,3 +615,4 @@ export const GliftyChatbot: React.FC = () => {
     </>
   );
 };
+
