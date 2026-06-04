@@ -83,9 +83,9 @@ export async function sendMessageToGemini(
   conversationHistory: GeminiMessage[],
   lang: 'EN' | 'HI',
 ): Promise<GeminiResponse> {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyDQLJFXaSIENjVJmytuaJzR_JPOMvBEQWM';
 
-  if (!apiKey || apiKey === 'your_gemini_api_key_here') {
+  if (!apiKey) {
     return {
       text:
         lang === 'HI'
