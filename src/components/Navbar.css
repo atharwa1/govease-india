@@ -1,10 +1,16 @@
 .navbar {
-  background-color: var(--color-surface);
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: var(--theme-transition);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.85);
 }
 
 .navbar-container {
@@ -21,6 +27,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-primary);
+  transition: color 0.2s;
+}
+
+.navbar-brand:hover {
+  color: var(--color-primary-hover);
 }
 
 .navbar-links {
@@ -32,29 +43,35 @@
 .nav-link {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--color-text-main);
-  transition: color 0.2s;
+  color: var(--color-text-muted);
+  transition: color 0.25s;
   position: relative;
+  padding: 0.25rem 0;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: -4px;
-  left: 0;
+  left: 50%;
   width: 0;
   height: 2px;
-  background-color: var(--color-primary);
+  background: linear-gradient(90deg, #3b82f6, #818cf8);
   border-radius: 1px;
-  transition: width 0.2s ease;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 .nav-link:hover, .nav-link.active {
-  color: var(--color-primary);
+  color: var(--color-text-main);
 }
 
 .nav-link.active::after {
   width: 100%;
+}
+
+.nav-link:hover::after {
+  width: 60%;
 }
 
 .navbar-right {
@@ -69,25 +86,25 @@
   gap: 0.375rem;
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-md);
-  background-color: var(--color-background);
+  background-color: var(--color-surface-elevated, var(--color-surface));
+  border: 1px solid var(--color-border);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-main);
-  transition: background-color 0.2s;
+  transition: all 0.2s;
 }
 
 .lang-toggle:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
-/* Mobile Menu Button */
 .menu-toggle {
   display: none;
   padding: 0.5rem;
   color: var(--color-text-main);
 }
 
-/* Mobile Styles */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
@@ -110,6 +127,7 @@
     z-index: 49;
     transform: translateX(100%);
     transition: transform 0.3s ease;
+    border-top: 1px solid var(--color-border);
   }
 
   .navbar-links.open {
@@ -121,6 +139,7 @@
     width: 100%;
     padding: 1rem 1.5rem;
     font-size: 1.125rem;
+    color: var(--color-text-main);
   }
 
   .navbar-links .nav-link::after {
@@ -128,7 +147,12 @@
   }
 
   .navbar-links .nav-link:hover {
-    background-color: var(--color-background);
+    background-color: var(--color-surface-elevated, var(--color-surface));
+  }
+
+  .navbar-links .nav-link.active {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
   }
 
   .lang-toggle {
@@ -158,4 +182,3 @@
     padding: 0 0.75rem;
   }
 }
-

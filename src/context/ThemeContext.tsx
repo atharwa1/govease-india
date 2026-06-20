@@ -16,15 +16,12 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check localStorage first, then system preference
+    // Check localStorage first
     const saved = localStorage.getItem('goease-theme') as Theme | null;
     if (saved === 'light' || saved === 'dark') return saved;
 
-    // Respect system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light';
+    // Default to dark — the Gen-Z way ✨
+    return 'dark';
   });
 
   useEffect(() => {
