@@ -48,7 +48,7 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   color: white;
   display: flex;
   align-items: center;
@@ -146,8 +146,8 @@
 
 .apply-tab.active {
   color: white;
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+  background: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
 }
 
 /* ==================
@@ -232,7 +232,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   border-radius: 2px;
 }
 
@@ -252,7 +252,7 @@
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   color: white;
   display: flex;
   align-items: center;
@@ -320,7 +320,7 @@
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.08);
 }
 
 .form-group textarea {
@@ -339,7 +339,7 @@
   font-size: 1rem;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
@@ -353,7 +353,7 @@
 
 .form-submit-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 24px var(--color-accent-glow);
 }
 
 .form-submit-btn:active {
@@ -453,7 +453,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10b981, #34d399);
+  background: var(--color-accent);
   color: white;
   display: flex;
   align-items: center;
@@ -495,7 +495,7 @@
   font-size: 0.9375rem;
   font-weight: 600;
   color: white;
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   border: none;
   border-radius: var(--radius-lg);
   cursor: pointer;
@@ -505,7 +505,7 @@
 
 .modal-close-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 12px rgba(79, 140, 255, 0.1);
 }
 
 /* ==================
@@ -543,10 +543,10 @@
 }
 
 .flow-step.active .flow-step-circle {
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   border-color: var(--color-primary);
   color: white;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 4px rgba(79, 140, 255, 0.15);
 }
 
 .flow-step.done .flow-step-circle {
@@ -741,7 +741,7 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10b981, #34d399);
+  background: var(--color-accent);
   color: white;
   display: flex;
   align-items: center;
@@ -751,8 +751,8 @@
 }
 
 @keyframes downloadPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); }
-  50% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 140, 255, 0.15); }
+  50% { box-shadow: 0 0 0 12px rgba(79, 140, 255, 0); }
 }
 
 .download-hero h2 {
@@ -781,7 +781,7 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, var(--color-primary), #7c3aed);
+  background: var(--color-accent);
   color: white;
   display: flex;
   align-items: center;
@@ -819,7 +819,7 @@
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: var(--color-accent);
   color: white;
   font-size: 0.9375rem;
   font-weight: 700;
@@ -831,7 +831,7 @@
 
 .download-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 6px 20px var(--color-accent-glow);
 }
 
 /* ==================
@@ -891,7 +891,7 @@
 .service-option.selected {
   border-color: var(--color-primary);
   background: var(--color-primary-light);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.08);
 }
 
 .service-option-icon {

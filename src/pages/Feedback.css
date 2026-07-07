@@ -97,11 +97,11 @@
 }
 
 .star-btn.active {
-  color: #f59e0b;
+  color: var(--color-accent);
 }
 
 .star-btn.active:hover {
-  color: #d97706;
+  color: var(--color-accent-hover);
 }
 
 /* Category Pills */
@@ -153,7 +153,7 @@
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.08);
 }
 
 .form-textarea {
@@ -187,13 +187,13 @@
   cursor: pointer;
   font-family: inherit;
   transition: background-color 0.2s, transform 0.15s;
-  box-shadow: 0 1px 3px 0 rgb(37 99 235 / 0.3);
+  box-shadow: 0 1px 3px 0 rgba(79, 140, 255, 0.15);
 }
 
 .feedback-submit-btn:hover {
   background-color: var(--color-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px 0 rgb(37 99 235 / 0.35);
+  box-shadow: 0 4px 12px 0 var(--color-accent-glow);
 }
 
 .feedback-submit-btn:active {
