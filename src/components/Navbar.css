@@ -1,16 +1,69 @@
 .navbar {
-  background: rgba(9, 9, 11, 0.7);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  background: rgba(5, 5, 7, 0.65);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 50;
-  transition: var(--theme-transition);
+  transition: all 0.4s var(--ease-out);
+  animation: navSlideDown 0.6s var(--ease-out) both;
+}
+
+/* Scroll-aware: tighter + deeper glass */
+.navbar.navbar--scrolled {
+  background: rgba(5, 5, 7, 0.85);
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .navbar.navbar--scrolled {
+  background: rgba(248, 249, 252, 0.92);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animated gradient border-bottom glow */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent-glow) 15%,
+    var(--color-accent) 35%,
+    var(--color-accent-2) 50%,
+    var(--color-accent) 65%,
+    var(--color-accent-glow) 85%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  background-size: 200% 100%;
+  animation: navGlowSweep 5s ease-in-out infinite;
+}
+
+@keyframes navGlowSweep {
+  0%, 100% { background-position: 200% 0; }
+  50% { background-position: -200% 0; }
 }
 
 [data-theme="light"] .navbar {
-  background: rgba(250, 250, 250, 0.8);
+  background: rgba(248, 249, 252, 0.75);
 }
 
 .navbar-container {
@@ -20,6 +73,10 @@
   height: 4rem;
 }
 
+/* ==================
+   Brand — Shimmer + Hover Glow
+   ================== */
+
 .navbar-brand {
   display: flex;
   align-items: center;
@@ -28,16 +85,51 @@
   font-weight: 700;
   color: var(--color-text-main);
   letter-spacing: -0.02em;
-  transition: opacity 0.3s var(--ease-out);
+  transition: all 0.4s var(--ease-out);
+  position: relative;
 }
 
 .navbar-brand svg {
   color: var(--color-accent);
+  transition: all 0.4s var(--ease-out);
+  filter: drop-shadow(0 0 0px var(--color-accent));
 }
 
 .navbar-brand:hover {
-  opacity: 0.8;
+  opacity: 1;
 }
+
+.navbar-brand:hover svg {
+  transform: rotate(-12deg) scale(1.15);
+  filter: drop-shadow(0 0 10px var(--color-accent-glow));
+  color: var(--color-accent-hover);
+}
+
+/* Brand text shimmer on hover */
+.navbar-brand span {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    var(--color-text-main) 0%,
+    var(--color-text-main) 40%,
+    var(--color-accent) 50%,
+    var(--color-text-main) 60%,
+    var(--color-text-main) 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 0.6s var(--ease-out);
+}
+
+.navbar-brand:hover span {
+  background-position: -100% 0;
+}
+
+/* ==================
+   Nav Links — Glowing underline + Scale
+   ================== */
 
 .navbar-links {
   display: flex;
@@ -49,15 +141,37 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text-muted);
-  transition: color 0.3s var(--ease-out), background-color 0.3s var(--ease-out);
+  transition: color 0.3s var(--ease-out), background-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
   position: relative;
   padding: 0.5rem 0.875rem;
   border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Magnetic hover glow background */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--color-accent-muted),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.nav-link:hover::before {
+  opacity: 1;
 }
 
 .nav-link:hover {
   color: var(--color-text-main);
   background-color: var(--color-surface-hover);
+  transform: translateY(-1px);
 }
 
 .nav-link.active {
@@ -65,18 +179,35 @@
   background-color: var(--color-surface);
 }
 
-/* Subtle active indicator dot */
+/* Glowing animated active indicator */
 .nav-link.active::after {
   content: '';
   position: absolute;
   bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--color-accent);
+  width: 18px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+  box-shadow: 0 0 8px var(--color-accent-glow), 0 0 16px var(--color-accent-glow);
+  animation: activeGlow 2s ease-in-out infinite;
 }
+
+@keyframes activeGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px var(--color-accent-glow), 0 0 12px var(--color-accent-glow);
+    opacity: 0.9;
+  }
+  50% {
+    box-shadow: 0 0 14px var(--color-accent-glow), 0 0 28px var(--color-accent-glow);
+    opacity: 1;
+  }
+}
+
+/* ==================
+   Right-side buttons — Interactive animations
+   ================== */
 
 .navbar-right {
   display: flex;
@@ -96,24 +227,74 @@
   font-weight: 500;
   color: var(--color-text-muted);
   transition: all 0.3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sweep highlight on hover */
+.lang-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-muted),
+    transparent
+  );
+  transition: left 0.5s var(--ease-out);
+}
+
+.lang-toggle:hover::before {
+  left: 100%;
 }
 
 .lang-toggle:hover {
   background-color: var(--color-surface-hover);
   color: var(--color-text-main);
   border-color: var(--color-border-hover);
+  transform: scale(1.04);
 }
+
+.lang-toggle:active {
+  transform: scale(0.96);
+}
+
+/* Globe icon spin on hover */
+.lang-toggle:hover svg {
+  animation: globeSpin 0.6s var(--ease-out);
+}
+
+@keyframes globeSpin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* ==================
+   Menu Toggle
+   ================== */
 
 .menu-toggle {
   display: none;
   padding: 0.5rem;
   color: var(--color-text-muted);
-  transition: color 0.3s var(--ease-out);
+  transition: all 0.3s var(--ease-out);
 }
 
 .menu-toggle:hover {
   color: var(--color-text-main);
 }
+
+.menu-toggle:active {
+  transform: scale(0.85);
+}
+
+/* ==================
+   Mobile Menu
+   ================== */
 
 @media (max-width: 768px) {
   .menu-toggle {
@@ -142,6 +323,27 @@
 
   .navbar-links.open {
     transform: translateX(0);
+  }
+
+  /* Staggered entrance for mobile links */
+  .navbar-links.open .nav-link {
+    animation: mobileNavLinkIn 0.4s var(--ease-out) both;
+  }
+  .navbar-links.open .nav-link:nth-child(1) { animation-delay: 0.05s; }
+  .navbar-links.open .nav-link:nth-child(2) { animation-delay: 0.1s; }
+  .navbar-links.open .nav-link:nth-child(3) { animation-delay: 0.15s; }
+  .navbar-links.open .nav-link:nth-child(4) { animation-delay: 0.2s; }
+  .navbar-links.open .nav-link:nth-child(5) { animation-delay: 0.25s; }
+
+  @keyframes mobileNavLinkIn {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .navbar-links .nav-link {

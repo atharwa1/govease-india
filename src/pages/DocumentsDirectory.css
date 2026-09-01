@@ -1,5 +1,5 @@
 .directory-page {
-  padding: 3rem 0;
+  padding: 3.5rem 0;
   min-height: calc(100vh - 4rem);
   transition: var(--theme-transition);
 }
@@ -30,6 +30,11 @@
   transform: translateY(-50%);
   color: var(--color-text-muted);
   pointer-events: none;
+  transition: color 0.3s var(--ease-out);
+}
+
+.directory-search-wrapper:focus-within .directory-search-icon {
+  color: var(--color-accent);
 }
 
 .directory-search-input {
@@ -41,12 +46,13 @@
   font-size: 1rem;
   font-family: inherit;
   background-color: var(--color-surface);
-  transition: border-color 0.2s;
+  color: var(--color-text-main);
+  transition: all 0.35s var(--ease-out);
 }
 
 .directory-search-input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.08);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-muted), 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .category-pills {
@@ -64,19 +70,22 @@
   font-weight: 500;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.35s var(--ease-out);
   font-family: inherit;
 }
 
 .category-pill:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 12px var(--color-accent-glow);
 }
 
 .category-pill.active {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+  border-color: transparent;
   color: white;
+  box-shadow: 0 2px 16px var(--color-accent-glow);
 }
 
 .directory-empty {
@@ -135,4 +144,3 @@
     font-size: 1.5rem !important;
   }
 }
-

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Sparkles, X, SendHorizontal, ArrowRight } from 'lucide-react';
+import { Sparkles, X, SendHorizontal, ArrowRight, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { documentsData } from '../data/documents';
 import './GliftyChatbot.css';
@@ -168,8 +168,17 @@ export const GliftyChatbot: React.FC = () => {
             </div>
             <div className="glifty-header-info">
               <h3>Glifty</h3>
-              <p>AI Government Services Assistant</p>
+              <p>
+                <span className="glifty-status-dot">Online</span> · AI Assistant
+              </p>
             </div>
+            <button
+              className="glifty-close-btn"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close Glifty"
+            >
+              <X size={14} />
+            </button>
           </div>
 
           <div className="glifty-messages">
@@ -232,7 +241,17 @@ export const GliftyChatbot: React.FC = () => {
               <SendHorizontal size={16} />
             </button>
           </div>
+
+          <div className="glifty-powered">
+            <Zap size={10} />
+            Powered by Glifty AI
+          </div>
         </div>
+      )}
+
+      {/* Tooltip */}
+      {!isOpen && (
+        <div className="glifty-tooltip">Ask Glifty ✨</div>
       )}
 
       <button
